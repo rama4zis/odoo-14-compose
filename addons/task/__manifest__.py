@@ -25,6 +25,9 @@
         
         # Report
         "report/work_order_report_view.xml",
+        
+        # Security
+        "security/ir.model.access.csv",
 
        
     ],
