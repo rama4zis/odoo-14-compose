@@ -14,7 +14,7 @@
 
         <!-- template utk semua yg diprint -->
         <template id="session_report">
-            <t t-call="report.html_container">
+            <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="doc">
                     <t t-call="academic.session_report_document" />
                 </t>
@@ -23,7 +23,7 @@
 
         <!-- template 1 halaman -->
         <template id="session_report_document">
-            <t t-call="report.external_layout">
+            <t t-call="web.external_layout">
                 <t t-set="doc" t-value="doc.with_context({'lang':doc.instructor_id.lang})" />
                 <div class="page">
 
