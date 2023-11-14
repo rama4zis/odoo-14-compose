@@ -1,5 +1,5 @@
 from odoo import fields, models, api, _
-from odoo.exceptions import RedirectWarning
+from odoo.exceptions import Warning
 
 class InheritedSaleOrder(models.Model):
     _name = "sale.order"
@@ -24,20 +24,30 @@ class InheritedSaleOrder(models.Model):
             ('team_name', '=', self.team_name.id),
             ('team_leader', '=', self.team_leader.id)
         ])
-        
+        print("---------------------------------")
+        print(work_orders)
+        print("---------------------------------")
         # work_order_book_ref = 
 
         # if there is overlap, then popup "Team already has work order during that period on $sale.order.name"
         if work_orders:
             # print(work_orders)
-            raise RedirectWarning(
-                _("Team already has work order during that period on %s" % work_orders[0].booking_order_ref.name)
-                # _(work_orders)
+            # raise RedirectWarning(
+            #     _("Team already has work order during that period on %s" % work_orders[0].booking_order_ref.name)
+            #     # _(work_orders)
+            # )
+            
+            raise Warning (
+                "Team already has work order during that period on %s" % work_orders[0].booking_order_ref.name
             )
         else:
             # if there is no overlap, ten popup "Team is available for booking"
-            raise RedirectWarning(
-                _("Team is available for booking")
+            # raise RedirectWarning(
+            #     _("Team is available for booking")
+            # )
+            
+            raise Warning (
+                "Team is available for booking"
             )
 
     # Make onchange team name, auto fill team member and team leader 
