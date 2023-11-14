@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <!-- Work Order action Menu -->
+        <record id="action_work_order_list" model="ir.actions.act_window">
+            <field name="name">Work Order</field>
+            <field name="res_model">work_order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add a Work Order
+                </p>
+            </field>
+        </record>
+
+        <!-- Service Team action Menu -->
+        <record id="action_service_team_list" model="ir.actions.act_window">
+            <field name="name">Service Team Action</field>
+            <field name="res_model">service_team</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add a Service Team
+                </p>
+            </field>
+        </record>
+
+        <!-- Sale Order action Menu -->
+        <record id="sale_order_order_list" model="ir.actions.act_window">
+            <field name="name">Sale Order</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add a Sale Order
+                </p>
+            </field>
+        </record>
+
+        <!-- MENU ITEM  -->
+        <!-- Top Level Menu Navbar  -->
+        <menuitem
+            id="root_menu"
+            name="TASK"
+            sequence="20" />
+
+        <!-- Root Menu sidebar  -->
+        <menuitem
+            id="task_menu_1"
+            name="Task"
+            parent="root_menu"
+            sequence="4" />
+
+        <!-- Sub menu -->
+        <menuitem
+            id="task_menu_2"
+            name="WorkOrder"
+            action="action_work_order_list"
+            parent="root_menu"
+            sequence="1" />
+
+        <!-- Sub menu  -->
+        <menuitem
+            id="task_menu_3"
+            name="ServiceTeam"
+            action="action_service_team_list"
+            parent="root_menu"
+            sequence="2" />
+
+        <!-- Sub menu  -->
+        <menuitem
+            id="task_menu_4"
+            name="SaleOrder"
+            action="sale_order_order_list"
+            parent="root_menu"
+            sequence="3" />
+
+    </data>
+
+
+</odoo>

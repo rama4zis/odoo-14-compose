@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <report
+            id="report_session_menu"
+            string="Work Order Report"
+            model="work_order"
+            report_type="qweb-pdf"
+            file="task.work_order_report"
+            name="task.work_order_report"
+        />
+
+        <template id="work_order_report">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+
+                            <div class="oe_structure" />
+
+                            <table
+                                style="border: 1px solid black; border-collapse: collapse;"
+                                class="table table-condensed table-bordered"
+                            >
+                                <tbody>
+                                    <tr>
+                                        <th colspan="4">
+                                            <span t-field="o.name" />
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Team Name</td>
+                                        <td>
+                                            <span t-field="o.team_name" />
+                                        </td>
+                                        <td>Customer</td>
+                                        <td>
+                                            <span t-field="o.rel_customer" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Booking Order Ref</td>
+                                        <td>
+                                            <span t-field="o.booking_order_ref" />
+                                        </td>
+                                        <td>Date</td>
+                                        <td><span t-field="o.date_start" /> - <span
+                                                t-field="o.date_end" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="4" height="100px"> NOTES: <br /><span
+                                                t-field="o.notes" /></th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="4" height="50px">Signature:</th>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+
+</odoo>

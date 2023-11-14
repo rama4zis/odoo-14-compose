@@ -1,34 +1,31 @@
 # -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 {
-    'name':        "task",
-
-    'summary':
-                   """
-                   task
-                   """,
-
-    'description': """
-        Manage course, classes, teachers, students, ...
-    """,
-
-    'author':      "Odoo",
-    'website':     "http://www.odoo.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category':    'OpenAcademy',
-    'version':     '0.1',
-
-    # any module necessary for this one to work correctly
-    'depends':     ['base'],
-
-    # always loaded
-    'data':        [
-        # "security/ir.model.access.csv",
-        # "data/openacademy_data.xml",
+    'name': 'task',
+    'version': '1.0',
+    'author'    : 'Rama',
+    'category'   : 'Apps',
+    'website' : 'http://github.com/rama4zis/',
+    'description' : 'Task Odoo Module',
+    'depends': [
+        # List Fitur
+        'base',
+        'account',
+        'sale'
     ],
-    # only loaded in demonstration mode
-    'demo':        [],
-    'license': 'AGPL-3',
+    'data': [
+        # List XML File Loaded 
+        "menu.xml",
+
+        # Views
+        "views/work_order_view.xml",
+        "views/service_team_view.xml",
+        "views/sale_order_view.xml",
+        
+        # Report
+        "report/work_order_report_view.xml",
+
+       
+    ],
 }

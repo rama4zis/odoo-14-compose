@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="sale_order_view_tree" model="ir.ui.view">
+            <field name="name">sale.order.view.tree</field>
+            <field name="model">sale.order</field>
+            <field name="priority" eval="1" />
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Order Number" />
+                    <field name="is_booking_order" string="Is Booking" />
+                    <field name="team_name" string="Team Name" />
+                    <field name="team_leader" string="Team Leader" />
+                    <field name="booking_start" string="Booking Start" />
+                    <field name="booking_end" string="Booking End" />
+
+                    <field name="state" invisible="1" />
+                    <field name="message_needaction" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View  -->
+        <record id="sale_order_inherit_sale_order" model="ir.ui.view">
+            <field name="name">sale.order.view.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+
+                <!-- Field check box for check  -->
+                <header>
+                    <button string="CHECK" name="check_work_order" type="object"
+                        class="oe_highlight" />
+                </header>
+
+                <field name="partner_id" position="after">
+                    <field name="is_booking_order" />
+                    <field name="team_name" />
+                    <field name="team_leader" />
+                    <field name="team_members" />
+                    <field name="booking_start" />
+                    <field name="booking_end" />
+
+                </field>
+
+            </field>
+        </record>
+
+    </data>
+
+
+</odoo>

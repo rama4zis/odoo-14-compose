@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <!-- TREE VIEW  -->
+        <record id="work_order_view_tree" model="ir.ui.view">
+            <field name="name">work_order.view.tree</field>
+            <field name="model">work_order</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Work Order Tree">
+                    <field name="name" />
+                    <field name="booking_order_ref" />
+                    <field name="team_name" />
+                    <field name="team_leader" />
+                    <field name="team_members" />
+                    <field name="planned_start" />
+                    <field name="planned_end" />
+                    <field name="date_start" />
+                    <field name="date_end" />
+                    <field name="notes" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Make Sequence for WO_Number generate WO + Number  -->
+        <record id="sequence_work_order" model="ir.sequence">
+            <field name="name">SequenceWorkOrder</field>
+            <field name="code">sequence_work_order_code</field>
+            <field name="prefix">WO</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <!-- Form View  -->
+        <record id="work_order_view_form" model="ir.ui.view">
+            <field name="name">work_order.view.form</field>
+            <field name="model">work_order</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Work Order Form ">
+                    <header>
+                        <button name="action_in_progress" states="cancelled,pending"
+                            string="Process" type="object" help="Process the Work Order"></button>
+                        <button name="action_done" states="in_progress" string="Done" type="object"
+                            help="Done the Work Order"></button>
+                        <button name="action_cancelled" states="in_progress,done" string="Cancel"
+                            type="object" help="Cancel the Work Order"></button>
+                        <button name="action_pending" states="in_progress" string="Pending"
+                            type="object" help="Pending the Work Order"></button>
+
+                        <field name="state" widget="statusbar" />
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1" />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="booking_order_ref" />
+                            <field name="team_name" />
+                            <field name="team_leader" />
+                            <field name="team_members" />
+                            <field name="planned_start" />
+                            <field name="planned_end" />
+                            <field name="date_start" />
+                            <field name="date_end" />
+                            <field name="notes" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+
+
+</odoo>
