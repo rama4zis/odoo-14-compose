@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="company_api_view_form" model="ir.ui.view">
+            <field name="name">company.api.view.form</field>
+            <field name="model">company.api</field>
+            <field name="arch" type="xml">
+                <form>
+                    <notebook>
+                        <page name="Scrap Result" string="GET COMPANY DATA">
+                            
+                            <group>
+                                <button string="Generate Data" name="generate_data" type="object" class="oe_highlight"/>
+                                <button string="Export Excel" name="export_data" type="object" class="oe_highlight"/>
+                            </group>
+
+                            <group>
+                                <field name="keyword"/>
+                                <field name="fileResult" invisible="1"/>
+                                <!-- <field name ="result_name" invisible="1"/> -->
+                                <field name ="result" />
+                            </group>
+                            <!-- JSON -->
+                            <!-- <group>
+                                <field name="label_result"/>
+                                <field name="label_url_result"/>
+                            </group> -->
+
+                            <!-- <group>
+                                <field name="scrap_result" />
+                            </group> -->
+
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="company_api_view_tree" model="ir.ui.view">
+            <field name="name">company.api.view.tree</field>
+            <field name="model">company.api</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- <field name="name" /> -->
+                    <field name="keyword" />
+                    <field name ="result" widget="download_link" />
+                </tree>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

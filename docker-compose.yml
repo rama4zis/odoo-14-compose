@@ -9,6 +9,9 @@ services:
     volumes:
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
     - HOST=mydb
     - USER=odoo
