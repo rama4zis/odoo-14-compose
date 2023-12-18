@@ -19,18 +19,9 @@
                             <group>
                                 <field name="keyword"/>
                                 <field name="fileResult" invisible="1"/>
-                                <!-- <field name ="result_name" invisible="1"/> -->
-                                <field name ="result" />
+                                <field name ="result" filename="resultName" />
+                                <field name ="resultName" invisible="1" />
                             </group>
-                            <!-- JSON -->
-                            <!-- <group>
-                                <field name="label_result"/>
-                                <field name="label_url_result"/>
-                            </group> -->
-
-                            <!-- <group>
-                                <field name="scrap_result" />
-                            </group> -->
 
                         </page>
                     </notebook>

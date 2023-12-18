@@ -5,6 +5,8 @@ import pandas as pd
 import io
 import base64
 
+from odoo.exceptions import Warning
+
 class CompanyApi(models.Model):
     _name = 'company.api'
     _description = 'Linkedin Company API'
@@ -22,29 +24,35 @@ class CompanyApi(models.Model):
     
     keyword = fields.Char(string="Keyword", required=True)
     fileResult = fields.Many2one(comodel_name="ir.attachment", string="File Result")
-    result = fields.Binary(string="Excel Result")
+    result = fields.Binary(string="Excel Result", related='fileResult.datas')
+    resultName = fields.Char(string="Result Name", related='fileResult.name')
+    
+    apiServer = "192.168.1.59"
     
     
     def search_company(self):
         querystring = self.keyword
-        url = f"http://127.0.0.1/5000/get/{querystring}"
+        url = f"http://{self.apiServer}:8000/get/{querystring}"
         
-        response = requests.request("GET", url)
+        response = requests.get(url)
         return response
         
     def generate_data(self):
         querystring = self.keyword
-        url = f"http://127.0.0.1/5000/get/{querystring}"
+        url = f"http://{self.apiServer}:8000/get/{querystring}"
         
-        response = requests.request("POST", url)
-        data = response.json()
-        return data
+        requests.post(url)
+        # data = response.json()
+        return "ok"
     
     def export_data(self):
         data = self.search_company()
-        data_dict = json.loads(data)
-        data_list = data_dict.get['data']
-        df = pd.DataFrame.from_dict(data_list, orient='column')
+        # raise Warning(
+        #     f"Exported Successfully : {json.loads(data.text)}"
+        # )
+        data_dict = json.loads(data.text)
+        data_list = data_dict["data"]
+        df = pd.DataFrame(data_list)
         
         file_buffer = io.BytesIO()
         
@@ -54,9 +62,10 @@ class CompanyApi(models.Model):
         
         # set to attachment file 
         excel_file = base64.b64encode(file_buffer.getvalue())
-        self.fileResult = self.env['ir.attachment'].create({
+        excelResult = self.env['ir.attachment'].create({
             'name': f'{self.keyword}.xlsx',
             'type': 'binary',
-            'datas': excel_file
+            'datas': excel_file.decode('utf-8') 
         })
         
+        self.fileResult = excelResult.id
